@@ -87,7 +87,7 @@ async function askGroq(prompt) {
         { role: "system", content: "You are a helpful assistant." },
         { role: "user", content: prompt },
       ],
-      model: "llama3-70b-8192",
+      model: "llama-3.3-70b-versatile",
     });
     return result.choices[0]?.message?.content?.trim() || "⚠️ No response.";
   } catch (err) {
