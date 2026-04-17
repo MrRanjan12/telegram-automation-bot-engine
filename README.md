@@ -1,73 +1,114 @@
 # AutoResponse Engine
 
-A unified backend system designed to handle real-time conversational workflows across multiple interfaces — integrating a Telegram bot and a web-based chat client through a single service layer.
+> A unified backend system that connects Telegram and Web interfaces through a single AI-powered service layer — built for real-time conversational workflows.
+
+
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
+
+
+
+
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+
+
+
+
+![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white)
+
+
+
+
+![LLaMA3](https://img.shields.io/badge/LLaMA3-Groq-orange?style=flat)
+
+
+
+---
+
+## 🔗 Live Demo
+
+| Interface | Link |
+|-----------|------|
+| 🌐 Web Client | [smartchattldr-ai.netlify.app](https://smartchattldr-ai.netlify.app/) |
+| 🤖 Telegram Bot | [@SmartChatTLDR_AI_Bot](https://t.me/SmartChatTLDR_AI_Bot) |
+| ⚙️ Backend API | [telegrambot-znt2.onrender.com](https://telegrambot-znt2.onrender.com) |
 
 ---
 
 ## Overview
 
-This project explores how a single backend can coordinate multiple interaction channels while maintaining consistent logic, response generation, and state handling.
+This project explores how a **single backend** can coordinate multiple interaction channels while maintaining consistent logic, response generation, and state handling.
 
-The system is built around an event-driven architecture, where user inputs from different platforms are processed through a shared pipeline, enabling controlled and scalable interaction flow.
-
----
-
-## System Design
-
-- A single Express-based backend serves both:
-  - Telegram bot interface  
-  - Web-based chat client  
-
-- Input from each source is normalized and passed through a shared processing layer  
-- Responses are generated using an external language model and returned through the respective channel  
+Built around an **event-driven architecture** — user inputs from Telegram and Web are normalized through a shared pipeline, processed by an LLM, and returned through their respective channels.
 
 ---
 
-## Core Capabilities
+## Architecture
 
-- Multi-interface interaction handling (Telegram + Web)  
-- AI-driven response generation using LLM integration  
-- Command-based control flow (e.g., summarization, mode switching)  
-- Per-user state tracking for dynamic behavior (e.g., summarization mode)  
+```
+User Input → Interface Layer → bot.js → Processing Logic → LLaMA3 (Groq) → Response → Client
+```
 
----
-
-## Architecture Flow
-
-User Input → Interface Layer → Express Server → Processing Logic → LLM → Response → Client
-
----
-
-## Technology
-
-- Node.js, Express  
-- grammY (Telegram interface)  
-- Groq API (LLaMA3)  
-- dotenv, CORS  
+**File Structure**
+```
+├── bot.js              # Core logic — Telegram + Web handler
+├── package.json        # Dependencies
+└── .gitignore
+```
 
 ---
 
-## Deployment
+## Core Features
 
-Frontend: https://smartchattldr-ai.netlify.app/  
-Backend: https://telegrambot-znt2.onrender.com  
-Bot: https://t.me/SmartChatTLDR_AI_Bot?start=_tgr_AIwV5SxiYTM1  
+- **Multi-interface handling** — Telegram bot + Web client, one backend
+- **AI response generation** — LLaMA3 via Groq API
+- **Command-based control flow** — summarization mode, mode switching
+- **Per-user state tracking** — dynamic behavior per session
 
 ---
 
-## Setup
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Runtime | Node.js |
+| Framework | Express.js |
+| Telegram Interface | grammY |
+| LLM Provider | Groq API (LLaMA3) |
+| Frontend Hosting | Netlify |
+| Backend Hosting | Render |
+
+---
+
+## Getting Started
+
+```bash
 git clone https://github.com/MrRanjan12/TelegramBot.git
-
 cd TelegramBot
 npm install
-npm start
+```
 
+Create `.env` file:
+```env
+GROQ_API_KEY=your_key_here
+PORT=3000
+```
+
+```bash
+node bot.js
+```
+
+---
+
+## What I Learned
+
+- Designing a unified backend for multiple communication interfaces
+- Integrating LLMs into structured event-driven workflows
+- Managing per-user state in real-time systems
+- Trade-offs between simplicity and scalability in single-file architecture
 
 ---
 
 ## Direction
 
-This project is part of a broader exploration into event-driven systems, real-time interaction handling, and how language models can be integrated into structured application workflows.
-
-Further work will focus on improving response control, scalability, and multi-agent interaction patterns.
-
+Next steps: modularizing bot.js into separate service layers, adding multi-agent patterns, and improving response control.
